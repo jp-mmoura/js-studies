@@ -1,5 +1,7 @@
 'use strict';
 
+const { sum } = require("@tensorflow/tfjs-node");
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // BANKIST APP
@@ -111,3 +113,36 @@ const checkDogs = function(dogsJulia, dogsKate){
 
 // data number 1: checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]); */
+
+//CHALLENGE #2
+/*Exercise const calcAverageHumanAge = function(ages){
+  const humanAges = ages.map(age => age <= 2 ? 2 * age : 16 + age * 4);
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(humanAges);
+  console.log(adults); 
+
+  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  return average; 
+}
+
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]); 
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+console.log(avg1, avg2); 
+Exercise*/
+
+//Array methods practice
+//1 - 
+const bankDepositSum = accounts.map(acc => acc.movements).flat().filter(mov => mov > 0 ).reduce((sum, cur) => sum + cur, 0);
+//An alternative way of achiving the same result is using the method flatMap() as it is very common to use .map() and .flat() together.
+
+//2 - 
+const numDeposits1000 = accounts.flatMap(acc => acc.movements).reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+
+//3 -
+const {deposits, withdrawals} = accounts.flatMap(acc => acc.movements).reduce((sums, cur) => {
+  sums [cur > 0 ? 'deposits' : 'withdrawals' +=cur]; 
+}, {deposits: 0, withdrawals: 0});
+
+console.log(deposits, withdrawals);
+
